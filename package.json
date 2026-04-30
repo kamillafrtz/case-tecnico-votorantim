@@ -1,0 +1,14 @@
+{
+  "name": "cadastro-vendas",
+  "version": "1.0.0",
+  "description": "Case técnico - Cadastro de clientes, produtos e vendas com consulta de CEP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}

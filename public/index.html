@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Cadastro — Votorantim Cimentos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-brand">
+      <img src="https://www.votorantimcimentos.com.br/wp-content/uploads/2026/01/vc_logo_90_pt_02.webp" alt="Votorantim Cimentos" class="logo">
+      <div class="topbar-title">
+        <span class="system-label">Sistema de Cadastro</span>
+        <span class="system-sub">Gestão de Vendas</span>
+      </div>
+    </div>
+    <nav>
+      <button class="tab active" data-tab="clientes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Clientes
+      </button>
+      <button class="tab" data-tab="produtos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        Produtos
+      </button>
+      <button class="tab" data-tab="vendas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Vendas
+      </button>
+      <button class="tab" data-tab="relatorios">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="18" y="2" width="4" height="20"/><rect x="10" y="10" width="4" height="12"/><rect x="2" y="14" width="4" height="8"/></svg>
+        Relatórios
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    
+    <section id="tab-clientes" class="tab-content active">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h2 id="form-cliente-titulo">Cadastro de Cliente</h2>
+        </div>
+        <form id="form-cliente">
+          <input type="hidden" id="cliente-id">
+          <div class="grid">
+            <label>Nome*<input type="text" id="nome" required placeholder="Ex: João"></label>
+            <label>Sobrenome*<input type="text" id="sobrenome" required placeholder="Ex: Silva"></label>
+            <label>Data de Nascimento<input type="date" id="data_nascimento"></label>
+            <label>Telefone<input type="text" id="telefone" placeholder="(11) 91234-5678"></label>
+            <label>E-mail*<input type="email" id="email" required placeholder="joao@email.com"></label>
+            <label>Foto de Perfil<input type="file" id="foto" accept="image/*"></label>
+          </div>
+          <div class="cep-row">
+            <label>CEP*<input type="text" id="cep" required placeholder="00000-000"></label>
+            <button type="button" id="btn-buscar-cep" class="btn-secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Buscar CEP
+            </button>
+          </div>
+          <div class="grid">
+            <label>Rua<input type="text" id="rua" placeholder="Nome da rua"></label>
+            <label>Bairro<input type="text" id="bairro" placeholder="Bairro"></label>
+            <label>Cidade<input type="text" id="cidade" placeholder="Cidade"></label>
+            <label>Estado<input type="text" id="estado" placeholder="UF"></label>
+          </div>
+          <div class="actions">
+            <button type="submit" id="btn-salvar-cliente" class="btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Criar Cadastro
+            </button>
+            <button type="button" id="btn-editar-cliente" class="btn-primary hidden">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Salvar Edição
+            </button>
+            <button type="button" id="btn-deletar-cliente" class="btn-danger hidden">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              Deletar
+            </button>
+            <button type="button" id="btn-limpar-cliente" class="btn-ghost">Limpar</button>
+          </div>
+          <div id="msg-cliente" class="msg"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+          <h2>Clientes Cadastrados</h2>
+        </div>
+        <div class="filtros">
+          <label>Filtrar por Ano:
+            <select id="filtro-ano"><option value="">Todos</option></select>
+          </label>
+          <label>Filtrar por Mês:
+            <select id="filtro-mes">
+              <option value="">Todos</option>
+              <option value="01">Janeiro</option><option value="02">Fevereiro</option>
+              <option value="03">Março</option><option value="04">Abril</option>
+              <option value="05">Maio</option><option value="06">Junho</option>
+              <option value="07">Julho</option><option value="08">Agosto</option>
+              <option value="09">Setembro</option><option value="10">Outubro</option>
+              <option value="11">Novembro</option><option value="12">Dezembro</option>
+            </select>
+          </label>
+          <label>Ordenar:
+            <select id="ordenacao">
+              <option value="id-desc">Mais recentes</option>
+              <option value="id-asc">Mais antigos</option>
+              <option value="nome-asc">Nome A-Z</option>
+              <option value="nome-desc">Nome Z-A</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-wrapper">
+          <table id="tabela-clientes">
+            <thead>
+              <tr>
+                <th>Foto</th><th>ID</th><th>Nome</th><th>E-mail</th>
+                <th>Telefone</th><th>Cidade</th><th>Cadastro</th><th>Compras</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="paginacao">
+          <button id="prev-page" class="btn-ghost">‹ Anterior</button>
+          <span id="page-info">Página 1</span>
+          <button id="next-page" class="btn-ghost">Próxima ›</button>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="tab-produtos" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h2>Cadastro de Produto</h2>
+        </div>
+        <form id="form-produto">
+          <input type="hidden" id="produto-id">
+          <div class="grid">
+            <label>Código*<input type="text" id="prod-codigo" required placeholder="Ex: PRD-001"></label>
+            <label>Nome*<input type="text" id="prod-nome" required placeholder="Nome do produto"></label>
+            <label>Valor*<input type="number" id="prod-valor" step="0.01" required placeholder="0,00"></label>
+            <label>Data do Cadastro<input type="text" id="prod-data" disabled placeholder="(automático)"></label>
+          </div>
+          <label>Descrição<textarea id="prod-descricao" rows="2" placeholder="Descrição do produto..."></textarea></label>
+          <div class="actions">
+            <button type="submit" class="btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Salvar Produto
+            </button>
+            <button type="button" id="btn-limpar-produto" class="btn-ghost">Limpar</button>
+          </div>
+          <div id="msg-produto" class="msg"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h2>Produtos Cadastrados</h2>
+        </div>
+        <div class="table-wrapper">
+          <table id="tabela-produtos">
+            <thead><tr><th>ID</th><th>Código</th><th>Nome</th><th>Valor</th><th>Cadastro</th><th>Ações</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="tab-vendas" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h2>Registrar Venda</h2>
+        </div>
+        <form id="form-venda">
+          <div class="grid" style="grid-template-columns: 1fr; max-width: 400px;">
+            <label>Cliente*
+              <select id="venda-cliente" required></select>
+            </label>
+          </div>
+
+          <div class="itens-venda-header">
+            <span class="itens-label">Itens da Venda</span>
+            <button type="button" id="btn-add-item" class="btn-ghost btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Adicionar Produto
+            </button>
+          </div>
+
+          <div id="lista-itens-venda">
+            
+          </div>
+
+          <div class="venda-resumo">
+            <span class="resumo-label">Total da Venda:</span>
+            <span id="venda-total-geral" class="resumo-valor">R$ 0,00</span>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              Gerar Venda
+            </button>
+          </div>
+          <div id="msg-venda" class="msg"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h2>Vendas Realizadas</h2>
+        </div>
+        <div class="table-wrapper">
+          <table id="tabela-vendas">
+            <thead><tr><th>Cliente</th><th>Produtos</th><th>Total</th><th>Desconto</th><th>Data</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="tab-relatorios" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h2>Relatórios SQL</h2>
+        </div>
+        <div class="rel-grid">
+          <button class="rel-btn" data-rel="clientes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Listar Todos os Clientes
+          </button>
+          <button class="rel-btn" data-rel="clientes-por-cidade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Clientes por Cidade
+          </button>
+          <button class="rel-btn" data-rel="vendas-por-cliente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Total de Vendas por Cliente
+          </button>
+          <button class="rel-btn" data-rel="media-mensal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Média Mensal de Vendas
+          </button>
+          <button class="rel-btn" data-rel="cidade-top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Cidade com Mais Vendas
+          </button>
+        </div>
+        <pre id="rel-resultado">Selecione um relatório acima.</pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
